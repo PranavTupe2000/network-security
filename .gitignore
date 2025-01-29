@@ -4,4 +4,7 @@ ns-venv/
 .tox/
 4.2.0
 
+*.egg-info/
+*.egg
+
 .vscode/
