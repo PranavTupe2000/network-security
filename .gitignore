@@ -1,0 +1,7 @@
+ns-venv/
+.env
+
+.tox/
+4.2.0
+
+.vscode/

@@ -1,0 +1,5 @@
+tox>=4.2.0
+black
+isort
+mypy
+pylint
