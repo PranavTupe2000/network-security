@@ -16,3 +16,4 @@ src/demo.py
 */.mypy_cache/
 */.mypy
 **/__pycache__
+helper.o
