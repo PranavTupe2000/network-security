@@ -8,3 +8,11 @@ ns-venv/
 *.egg
 
 .vscode/
+logs/
+src/demo.py
+
+*/__pycache__/
+*/.pytest_cache/
+*/.mypy_cache/
+*/.mypy
+**/__pycache__
