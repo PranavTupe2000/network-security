@@ -1,0 +1,10 @@
+{
+    "material-icon-theme.folders.associations": {
+        "ns-venv": "aurelia",
+        "requirements-dev.txt": "huff",
+        "entity": "element",
+        "network_security": "cluster",
+        "NetworkSecurity.egg-info": "lua",
+    }
+
+}

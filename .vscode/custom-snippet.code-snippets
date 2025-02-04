@@ -1,0 +1,13 @@
+{
+	"try-except": {
+		"scope": "python",
+		"prefix": "try-except",
+		"body": [
+			"try:",
+			"\t$1",
+			"except Exception as e:",
+			"\traise NetworkSecurityException(e, sys)"
+		],
+		"description": "try except block"
+	},
+}

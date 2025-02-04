@@ -7,11 +7,10 @@ ns-venv/
 *.egg-info/
 *.egg
 
-.vscode/
 logs/
 src/demo.py
 tests/demo.py
-data/
+artifacts/
 
 */__pycache__/
 */.pytest_cache/
