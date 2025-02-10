@@ -5,6 +5,10 @@
         "entity": "element",
         "network_security": "cluster",
         "NetworkSecurity.egg-info": "lua",
+        ".tox": "quasar",
+        ".mypy_cache": "scons",
+        "artifacts": "obsidian",
+        "final_model": "shader",
     }
 
 }

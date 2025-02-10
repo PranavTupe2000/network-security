@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phishing URL Analyzer</title>
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <!-- Header -->
+  <header class="mb-8 text-center">
+    <h1 class="text-3xl font-bold text-gray-800">Phishing URL Detector</h1>
+    <p class="text-gray-600">Analyze any URL to check if it's safe or phishing.</p>
+  </header>
+
+  <!-- Input Section -->
+  <div class="w-full max-w-lg bg-white shadow-lg rounded-lg p-6">
+    <form action="/analyze" method="post" class="space-y-4">
+        <label for="url-input" class="block text-gray-700 font-medium">Enter URL:</label>
+        <input 
+        name="url"
+        id="url-input" 
+        type="text" 
+        placeholder="e.g., http://example.com" 
+        required
+        class="w-full mt-2 p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+        >
+        <button 
+        type="submit"
+        id="analyze-button" 
+        class="mt-4 w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700"
+        >
+        Analyze URL
+        </button>
+    </form>
+  </div>
+
+  <!-- <div class="container mx-auto p-8">
+    <div class="bg-white rounded-lg shadow-lg p-6">
+      <h1 class="text-2xl font-bold mb-4 text-center">Phishing URL Analyzer</h1>
+      <form action="/analyze" method="post" class="space-y-4">
+        <label for="url" class="block text-lg font-medium">Enter URL:</label>
+        <input
+          type="text"
+          id="url"
+          name="url"
+          placeholder="Enter a URL to analyze"
+          class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500"
+          required
+        />
+        <button
+          type="submit"
+          class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+        >
+          Analyze
+        </button>
+      </form>
+    </div>
+  </div> -->
+</body>
+</html>

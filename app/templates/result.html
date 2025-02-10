@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analysis Result</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto p-8">
+    <div class="bg-white rounded-lg shadow-lg p-6">
+      <h1 class="text-2xl font-bold mb-4 text-center">Analysis Result</h1>
+      <p class="text-lg">
+        <strong>URL:</strong> {{ url }}
+      </p>
+      <p class="text-lg">
+        <strong>Prediction:</strong> {{ result }}
+      </p>
+
+      <h2 class="text-xl font-bold mt-6">Extracted Features:</h2>
+      <ul class="list-disc pl-6">
+        {% for key, value in features.items() %}
+        <li><strong>{{ key }}:</strong> {{ value }}</li>
+        {% endfor %}
+      </ul>
+      <a
+        href="/"
+        class="mt-6 inline-block bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+      >
+        Analyze Another URL
+      </a>
+    </div>
+  </div>
+</body>
+</html>
