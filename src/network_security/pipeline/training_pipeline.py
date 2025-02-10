@@ -24,6 +24,8 @@ from network_security.entity.artifact_entity import (
     ModelTrainerArtifact
 )
 
+from network_security.aws import s3_syncer
+
 class TrainingPipeline:
     def __init__(self):
         self.traning_pipeline_config = TrainingPipelineConfig()
@@ -79,6 +81,8 @@ class TrainingPipeline:
             data_transformation_artifact = self.start_data_transformation(data_validation_artifact=data_validation_artifact)
             model_trainer_artifact = self.start_model_training(data_transformation_artifact=data_transformation_artifact)
 
+            s3_syncer.upload_folder_to_s3("artifacts", s3_prefix="artifacts")
+            s3_syncer.upload_folder_to_s3("final_model", skip_if_exists=False, s3_prefix="final_model")
             return model_trainer_artifact
         except Exception as e:
             raise NetworkSecurityException(e, sys)
