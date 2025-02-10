@@ -1,5 +1,9 @@
 import os
 import sys
+from urllib.parse import urlparse
+
+import mlflow
+from dotenv import load_dotenv
 
 from network_security.utils.exception import NetworkSecurityException
 from network_security.utils.logger import logging
@@ -19,6 +23,8 @@ from sklearn.ensemble import (
     RandomForestClassifier
 )
 
+load_dotenv()
+
 class ModelTrainer:
     def __init__(self,
                 model_trainer_config: ModelTrainerConfig,
@@ -29,6 +35,27 @@ class ModelTrainer:
             self.data_transformation_artifact = data_transformation_artifact
         except Exception as e:
             raise NetworkSecurityException(e, sys)
+        
+    def track_mlflow(self,best_model,classificationmetric):
+        mlflow.set_tracking_uri(os.getenv('MLFLOW_TRACKING_URI'))
+        tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
+        
+        with mlflow.start_run():
+            f1_score=classificationmetric.f1_score
+            precision_score=classificationmetric.precision_score
+            recall_score=classificationmetric.recall_score
+
+            
+
+            mlflow.log_metric("f1_score",f1_score)
+            mlflow.log_metric("precision",precision_score)
+            mlflow.log_metric("recall_score",recall_score)
+            # mlflow.sklearn.log_model(best_model,"model")
+            # Model registry does not work with file store
+            if tracking_url_type_store != "file":
+                mlflow.sklearn.log_model(best_model, "model", registered_model_name="Best Model")
+            else:
+                mlflow.sklearn.log_model(best_model, "model")
         
     def train_model(self, X_train,y_train,X_test,y_test)->ModelTrainerArtifact:
         try:
@@ -86,6 +113,7 @@ class ModelTrainer:
             y_test_pred=best_model.predict(X_test)
             classification_test_metric=get_classification_score(y_true=y_test,y_pred=y_test_pred)
 
+            self.track_mlflow(best_model,classification_test_metric)
 
             preprocessor = load_object(file_path=self.data_transformation_artifact.transformed_object_file_path)
                 
