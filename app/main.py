@@ -3,9 +3,8 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
-import joblib  # To load the ML model
 import numpy as np
-from typing import Dict
+import uvicorn
 
 from network_security.utils.estimator import NetworkModel
 from network_security.utils.utils import load_object
@@ -88,6 +87,4 @@ async def analyze_url(request: Request, url: str = Form(...)):
 
 
 if __name__ == "__main__":
-    import uvicorn
-
     uvicorn.run(app, host="0.0.0.0", port=8000)
