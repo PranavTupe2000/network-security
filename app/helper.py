@@ -1,3 +1,4 @@
+import re
 import ssl
 import socket
 from typing import Dict
@@ -63,7 +64,7 @@ def extract_features(url: str):
     Replace this logic with your actual feature extraction implementation.
     """
     features = {
-        "having_IP_Address": 1 if "192." in url or "10." in url else -1,
+        "having_IP_Address": 1 if re.search(r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b', url) else -1,
         "URL_Length": len(url),
         "Shortining_Service": 1 if "bit.ly" in url or "t.co" in url else -1,
         "having_At_Symbol": 1 if "@" in url else -1,
