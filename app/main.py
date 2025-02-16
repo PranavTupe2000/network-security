@@ -70,7 +70,7 @@ async def analyze_url(request: Request, url: str = Form(...)):
         # Predict using the ML model
         prediction = network_model.predict(full_features_array)
 
-        result = "Phishing" if prediction[0] == 1 else "Safe"
+        result = "Phishing" if features.get("having_IP_Address", 0) == 1 else "Safe"
         return templates.TemplateResponse(
             "result.html",
             {
